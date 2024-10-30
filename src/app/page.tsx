@@ -1,7 +1,11 @@
+import { Hero } from "@/components/Hero";
+import { RecipesFeed } from "@/components/RecipesFeed";
+
 export default function Home() {
   return (
     <div>
-      <main></main>
+      <Hero />
+      <RecipesFeed />
     </div>
   );
 }
