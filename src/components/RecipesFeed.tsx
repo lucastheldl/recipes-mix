@@ -1,3 +1,3 @@
 export function RecipesFeed() {
-  return <div className="h-10">feed</div>;
+  return <div className="">feed</div>;
 }
