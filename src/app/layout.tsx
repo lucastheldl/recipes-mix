@@ -3,6 +3,7 @@ import type { Metadata } from "next";
 
 import "../styles/global.css";
 import { Footer } from "@/components/Footer";
+import { AuthContextProvider } from "@/context/AuthContext";
 
 export const metadata: Metadata = {
   title: "Recipes Mix",
@@ -17,9 +18,11 @@ export default function RootLayout({
   return (
     <html lang="pt-br">
       <body className={`flex flex-col min-h-screen antialiased`}>
-        <Header />
-        {children}
-        <Footer />
+        <AuthContextProvider>
+          <Header />
+          {children}
+          <Footer />
+        </AuthContextProvider>
       </body>
     </html>
   );
