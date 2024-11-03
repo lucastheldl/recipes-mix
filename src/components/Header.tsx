@@ -1,28 +1,27 @@
-"use client";
 import Image from "next/image";
 import logo from "../../public/Logo.png";
 import Link from "next/link";
 import { Soup, SquarePen } from "lucide-react";
-import { useContext } from "react";
-import { AuthContext } from "@/context/AuthContext";
 
-export function Header() {
-  const { user } = useContext(AuthContext);
+import { auth } from "../../auth";
+
+export async function Header() {
+  const session = await auth();
   return (
     <div className="flex py-5 px-24 content-center justify-between bg-lightBlue">
       <Image src={logo} alt="logo" />
       <ul className="flex gap-10 list-none text-lg">
         <li className="flex gap-2 justify-center items-center text-violet font-semibold ">
           <Soup />
-          <Link href={user ? "#" : "/auth/register"}>Minhas Receitas</Link>
+          <Link href={session ? "#" : "/auth/register"}>Minhas Receitas</Link>
         </li>
-        {!user && (
+        {!session && (
           <li className="flex gap-2 justify-center items-center text-violet font-semibold">
             <SquarePen />
-            <Link href={"/auth/register"}>Registrar</Link>
+            <Link href={"/auth/login"}>Registrar</Link>
           </li>
         )}
-        {user && (
+        {session && (
           <li className="flex gap-2 justify-center items-center text-violet font-semibold">
             <SquarePen />
             <Link href={"/auth/login"}>Login</Link>
